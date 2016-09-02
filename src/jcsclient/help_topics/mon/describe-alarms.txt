@@ -1,0 +1,56 @@
+
+NAME :
+    describe-alarms
+
+
+DESCRIPTION :
+    Retrieves alarms with the specified names.
+
+    If no name is specified, all alarms for the user are returned.
+    Alarms can be retrieved by using only a prefix for the alarm name,
+    the alarm state, or a prefix for any action.
+
+SYNOPSIS :
+    describe-alarms
+    [--alarm-names <value>]
+    [--alarm-name-prefix <value>]
+    [--state-value <value>]
+    [--action-prefix <value>]
+    [--starting-token <value>]
+    [--max-items <value>]
+
+OPTIONS :
+    --alarm-names (list)
+    A list of alarm names to retrieve information for.
+    Syntax:
+    "string" "string" ...
+
+    --alarm-name-prefix (string)
+    The alarm name prefix. alarm-names cannot be
+    specified if this parameter is specified.
+
+    --state-value (string)
+    The state value to be used in matching alarms.
+    Possible values:
+        OK
+        ALARM
+        INSUFFICIENT_DATA
+
+    --action-prefix (string)
+    The action name prefix.
+
+    --starting-token (string)
+    A token to specify where to start paginating.
+    This is the next-token from a previously truncated response.
+
+    --max-items (integer)
+    The total number of items to return. If the total number
+    of items available is more than the value specified in
+    max-items then a next-token will be provided in the output
+    that you can use to resume pagination. This next-token response
+    element should not be used directly outside of the JCS CLI.
+
+EXAMPLES :
+    jcs mon describe-alarms
+
+    jcs mon describe-alarms --alarm-names myalarm myalarm1

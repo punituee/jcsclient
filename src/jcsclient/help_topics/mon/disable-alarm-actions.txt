@@ -1,0 +1,21 @@
+
+NAME :
+    disable-alarm-actions
+
+DESCRIPTION :
+    Disables actions for the specified alarms. 
+    When an alarm's actions are disabled the alarm's state may 
+    change, but none of the alarm's actions will execute.
+
+SYNOPSIS :
+    disable-alarm-actions
+    --alarm-names <value>
+
+OPTIONS :
+    --alarm-names (list)
+    A list of alarm names to retrieve information for.
+    Syntax:
+    "string" "string" ...
+
+EXAMPLES :
+    jcs mon disable-alarm-actions --alarm-names Alarm1 Alarm2

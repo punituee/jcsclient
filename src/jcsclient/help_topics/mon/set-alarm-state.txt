@@ -1,0 +1,39 @@
+
+NAME :
+    set-alarm-state
+
+
+DESCRIPTION :
+    Temporarily sets the state of an alarm for testing purposes.
+    When the updated state-value differs from the previous value,
+    the action configured for the appropriate state is invoked. 
+
+SYNOPSIS :
+    set-alarm-state
+    --alarm-name <value>
+    --state-value <value>
+    --state-reason <value>
+    [--state-reason-data <value>]
+
+OPTIONS :
+    --alarm-name (string)
+    The descriptive name for the alarm. This name must be unique 
+    within the user's JCS account. The maximum length is 255 characters.
+
+    --state-value (string)
+    The value of the state.
+    Possible values:
+        OK
+        ALARM
+        INSUFFICIENT_DATA
+
+    --state-reason (string)
+    The reason that this alarm is set to this specific state 
+    (in human-readable text format)
+
+    --state-reason-data (string)
+    The reason that this alarm is set to this specific state 
+    (in machine-readable JSON format)
+
+EXAMPLES :
+    jcs mon set-alarm-state --alarm-name Alarm1 --state-value ALARM --state-reason "test the action"

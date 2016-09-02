@@ -1,0 +1,20 @@
+
+NAME :
+    delete-alarms
+
+
+DESCRIPTION :
+    Deletes all specified alarms. In the event of an error, no alarms are deleted.
+
+SYNOPSIS :
+    delete-alarms
+    --alarm-names <value>
+
+OPTIONS :
+    --alarm-names (list)
+    A list of alarm names to retrieve information for.
+    Syntax:
+    "string" "string" ...
+
+EXAMPLES :
+    jcs mon delete-alarms --alarm-names Alarm1 Alarm2 Alarm3 AlarmN 

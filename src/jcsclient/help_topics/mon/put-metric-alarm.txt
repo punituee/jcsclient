@@ -1,0 +1,160 @@
+
+NAME :
+    put-metric-alarm
+
+
+DESCRIPTION:
+    Creates or updates an alarm and associates it with
+    the specified JCS monitoring metric; allowing actions
+    to be taken on the associated instance(s) such as 
+    sending email notifications, executing scaling policies 
+    or even corrective measures such as stop/reboot/terminate 
+    instance as soon as the metric values are breached and 
+    the alarm is raised.
+
+    When this operation creates an alarm, the alarm state
+    is immediately set to INSUFFICIENT_DATA . The alarm is
+    evaluated and its StateValue is set appropriately.
+    Any actions associated with the StateValue is then executed.
+
+SYNOPSIS :
+    put-metric-alarm
+    --alarm-name <value>
+    [--alarm-description <value>]
+    [--actions-enabled]
+    [--ok-actions <value>]
+    [--alarm-actions <value>]
+    [--insufficient-data-actions <value>]
+    --metric-name <value>
+    --namespace <value>
+    --statistic <value>
+    [--dimensions <value>]
+    --period <value>
+    [--unit <value>]
+    --evaluation-periods <value>
+    --threshold <value>
+    --comparison-operator <value>
+
+OPTIONS :
+    --alarm-name (string)
+    The descriptive name for the alarm. This name must be
+    unique within the user's JCS account
+
+    --alarm-description (string)
+    The description for the alarm.
+
+    --actions-enabled (boolean)
+    Indicates whether or not actions should be
+    executed during any changes to the alarm's state.
+
+    --ok-actions (list)
+    The list of actions to execute when this alarm transitions
+    into an OK state from any other state. Each action is specified
+    as an JCS Resource Name (JRN).
+    Syntax:
+    "string" "string" ...
+
+    --alarm-actions (list)
+    The list of actions to execute when this alarm transitions into
+    an ALARM state from any other state. Each action is specified
+    as an JCS Resource Name (ARN).
+    Syntax:
+    "string" "string" ...
+
+    --insufficient-data-actions (list)
+    The list of actions to execute when this alarm transitions
+    into an INSUFFICIENT_DATA state from any other state. Each
+    action is specified as an JCS Resource Name (ARN).
+    Syntax:
+    "string" "string" ...
+
+    --metric-name (string)
+    The name for the alarm's associated metric.
+
+    --namespace (string)
+    The namespace for the alarm's associated metric.
+
+    --statistic (string)
+    The statistic to apply to the alarm's associated metric.
+    Possible values:
+        SampleCount
+        Average
+        Sum
+        Minimum
+        Maximum
+
+    --dimensions (list)
+    The dimensions for the alarm's associated metric.
+    Shorthand Syntax:
+    Name=string,Value=string ...
+
+    --period (integer)
+    The period in seconds over which the specified statistic is applied.
+
+    --unit (string)
+    The statistic's unit of measure. For example, the units for the
+    JCS EC2 NetworkIn metric are Bytes because NetworkIn tracks
+    the number of bytes that an instance receives on all network interfaces.
+    You can also specify a unit when you create a custom metric. Units help
+    provide conceptual meaning to your data. Metric data points that specify
+    a unit of measure, such as Percent, are aggregated separately.
+    Note: If you specify a unit, you must use a unit that is appropriate
+    for the metric. Otherwise, this can cause an JCS monitoring alarm
+    to get stuck in the INSUFFICIENT DATA state.
+    Possible values:
+        Seconds
+        Microseconds
+        Milliseconds
+        Bytes
+        Kilobytes
+        Megabytes
+        Gigabytes
+        Terabytes
+        Bits
+        Kilobits
+        Megabits
+        Gigabits
+        Terabits
+        Percent
+        Count
+        Bytes/Second
+        Kilobytes/Second
+        Megabytes/Second
+        Gigabytes/Second
+        Terabytes/Second
+        Bits/Second
+        Kilobits/Second
+        Megabits/Second
+        Gigabits/Second
+        Terabits/Second
+        Count/Second
+        None
+
+    --evaluation-periods (integer)
+    The number of periods over which data is compared to the specified threshold.
+
+    --threshold (double)
+    The value against which the specified statistic is compared.
+
+    --comparison-operator (string)
+    The arithmetic operation to use when comparing the specified statistic and threshold.
+    The specified statistic value is used as the first operand.
+    Possible values:
+        GreaterThanOrEqualToThreshold
+        GreaterThanThreshold
+        LessThanThreshold
+        LessThanOrEqualToThreshold
+
+EXAMPLES :
+    jcs mon put-metric-alarm --alarm-name cpu-mon
+                            --alarm-description "Alarm when CPU exceeds 80 percent"
+                            --metric-name CPUUtilization
+                            --namespace JCS/Compute
+                            --statistic Average
+                            --period 300
+                            --threshold 80
+                            --comparison-operator GreaterThanThreshold
+                            --dimensions Name=InstanceId,Value=i-12345678
+                            --evaluation-periods 2
+                            --alarm-actions [abc@def.com | jrn_of_scaling_policy | jrn_of_stop_reboot_terminate_instance] 
+                            --unit Percent

@@ -1,0 +1,86 @@
+
+NAME :
+    describe-alarms-for-metric
+
+
+DESCRIPTION :
+    Retrieves all alarms for a single metric. Specify a statistic,
+    period, or unit to filter the set of alarms further.
+
+SYNOPSIS :
+    describe-alarms-for-metric
+    --namespace <value>
+    --metric-name <value>
+    [--dimensions <value>]
+    [--period <value>]
+    [--statistic <value>]
+    [--unit <value>]
+
+OPTIONS :
+    --namespace (string)
+    The namespace of the metric, with or without spaces.
+
+    --metric-name (string)
+    The name of the metric, with or without spaces.
+
+    --dimensions (list)
+    A list of dimensions describing qualities of the metric.
+    Shorthand Syntax:
+    Name=string,Value=string ...
+
+    --period (integer)
+    The granularity, in seconds, of the returned datapoints.
+    period must be at least 60 seconds and must be a multiple of 60.
+    The default value is 60.
+
+    --statistic (string)
+    The metric statistics to return. For information about specific statistics
+    returned by GetMetricStatistics, see statistics in the JioCloudServices
+    Monitoring Developer Guide .
+    Possible values are:
+        SampleCount
+        Average
+        Sum
+        Minimum
+        Maximum
+
+    --unit (string)
+    The unit for the metric.
+    Possible values:
+        Seconds
+        Microseconds
+        Milliseconds
+        Bytes
+        Kilobytes
+        Megabytes
+        Gigabytes
+        Terabytes
+        Bits
+        Kilobits
+        Megabits
+        Gigabits
+        Terabits
+        Percent
+        Count
+        Bytes/Second
+        Kilobytes/Second
+        Megabytes/Second
+        Gigabytes/Second
+        Terabytes/Second
+        Bits/Second
+        Kilobits/Second
+        Megabits/Second
+        Gigabits/Second
+        Terabits/Second
+        Count/Second
+        None
+
+EXAMPLES :
+    jcs mon describe-alarms-for-metric --namespace JCS/Compute
+                                       --metric-name CPUUtilization
+
+    jcs mon describe-alarms-for-metric --metric-name CPUUtilization
+                                       --period 3600
+                                       --namespace JCS/Compute
+                                       --statistic Maximum
+                                       --dimensions Name=InstanceId,Value=i-abcdef

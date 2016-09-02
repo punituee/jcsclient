@@ -24,6 +24,7 @@ from jcsclient import config
 from jcsclient import help
 from jcsclient.monitoring_api import monitoring
 
+
 class Controller(object):
     """Monitoring Controller class
 
@@ -68,3 +69,77 @@ class Controller(object):
         return monitoring.get_metric_statistics(self.url, self.verb,
                                                 self.headers, self.version,
                                                 args)
+
+    def put_metric_alarm(self, args):
+        """Creates or updates an alarm and associates
+        it with the specified Amazon CloudWatch metric.
+        Optionally, this operation can associate one
+        or more Amazon SNS resources with the alarm.
+
+        When this operation creates an alarm, the
+        alarm state is immediately set to
+        INSUFFICIENT_DATA. The alarm is evaluated and
+        its StateValue is set appropriately. Any
+        actions associated with the StateValue are then
+        executed."""
+
+        return monitoring.put_metric_alarm(self.url, self.verb, self.headers,
+                                           self.version, args)
+
+    def disable_alarm_actions(self, args):
+        """Disables actions for the specified alarms.
+        When an alarm's actions are disabled the alarm's
+        state may change, but none of the alarm's actions
+        will execute."""
+
+        return monitoring.disable_alarm_actions(self.url, self.verb,
+                                                self.headers,
+                                                self.version, args)
+
+    def enable_alarm_actions(self, args):
+        """
+        Enables actions for the specified alarms
+        """
+        return monitoring.enable_alarm_actions(self.url, self.verb,
+                                               self.headers,
+                                               self.version, args)
+
+    def describe_alarms(self, args):
+        """
+        Retrieves alarms with the specified names.
+        If no name is specified, all alarms for the
+        user are returned. Alarms can be retrieved by
+        using only a prefix for the alarm name, the
+        alarm state, or a prefix for any action.
+        """
+        return monitoring.describe_alarms(self.url, self.verb,
+                                          self.headers,
+                                          self.version, args)
+
+    def describe_alarms_for_metric(self, args):
+        """
+        Retrieves all alarms for a single metric.
+        Specify a statistic, period, or unit to filter
+         the set of alarms further.
+        """
+        return monitoring.describe_alarms_for_metric(self.url, self.verb,
+                                                     self.headers,
+                                                     self.version, args)
+
+    def delete_alarms(self, args):
+        """
+        Deletes all specified alarms. In the event of an error,
+        no alarms are deleted.
+        """
+        return monitoring.delete_alarms(self.url, self.verb,
+                                        self.headers,
+                                        self.version, args)
+
+    def set_alarm_state(self, args):
+        """
+        Deletes all specified alarms. In the event of an error,
+        no alarms are deleted.
+        """
+        return monitoring.set_alarm_state(self.url, self.verb,
+                                        self.headers,
+                                        self.version, args)

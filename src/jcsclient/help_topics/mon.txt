@@ -14,6 +14,13 @@ AVAILABLE COMMANDS :
 
     list-metrics
     get-metric-statistics
+    delete-alarms
+    describe-alarms
+    describe-alarms-for-metric
+    put-metric-alarm
+    disable-alarm-actions
+    enable-alarm-actions
+    set-alarm-state
 
 To see detailed help for any command, type
     jcs mon <command> help

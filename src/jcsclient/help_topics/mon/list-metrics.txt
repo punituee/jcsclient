@@ -32,7 +32,8 @@ OPTIONS :
     Name=string,Value=string ...
 
     --starting-token (string)
-    A token to specify where to start paginating. This is the next-token from a previously truncated response.
+    A token to specify where to start paginating.
+    This is the next-token from a previously truncated response.
 
 EXAMPLES :
     jcs mon list-metrics

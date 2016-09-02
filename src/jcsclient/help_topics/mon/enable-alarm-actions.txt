@@ -1,0 +1,19 @@
+
+NAME :
+    enable-alarm-actions
+
+DESCRIPTION :
+    Enables actions for the specified alarms.
+
+SYNOPSIS :
+    enable-alarm-actions
+    --alarm-names <value>
+
+OPTIONS :
+    --alarm-names (list)
+    A list of alarm names to retrieve information for.
+    Syntax:
+    "string" "string" ...
+
+EXAMPLES :
+    jcs mon enable-alarm-actions --alarm-names Alarm1 Alarm2
